@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+ 
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ths.client.ui.VitalsController" styleClass="card">
+
+    <top>
+        <VBox spacing="10">
+            <!-- Top bar identical to Bookings -->
+            <ToolBar>
+                <Button text="Dashboard" onAction="#goDashboard"/>
+                <Button text="Vitals" onAction="#goVitals"/>
+                <Button text="Prescriptions" onAction="#goRx"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Label text="Logged in"/>
+            </ToolBar>
+
+            <!-- Your vitals form row(s), unchanged -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="8" right="8" bottom="0" left="8"/>
+                </padding>
+
+                <Label text="Patient ID:"/>
+                <ComboBox fx:id="patientCombo" promptText="Select patient" prefWidth="220.0"/>
+
+                <!--<TextField fx:id="patientIdField" promptText="e.g. P001" prefWidth="120"/>-->
+
+                <Label text="Pulse"/>
+                <TextField fx:id="pulseField" promptText="72" prefWidth="60"/>
+                <Label text="Resp"/>
+                <TextField fx:id="respField"  promptText="16" prefWidth="60"/>
+                <Label text="Temp"/>
+                <TextField fx:id="tempField"  promptText="36.9" prefWidth="70"/>
+                <Label text="BP"/>
+                <TextField fx:id="systolicField" promptText="120" prefWidth="60"/>
+                <Label text="/"/>
+                <TextField fx:id="diastolicField" promptText="80"  prefWidth="60"/>
+
+                <Button fx:id="recordBtn" text="Record" onAction="#record"/>
+<!--                <Button fx:id="exportBtn" text="Export CSV"/>
+                <Button fx:id="loadBtn"   text="Load"/>-->
+            </HBox>
+        </VBox>
+    </top>
+
+
+    <center>
+        <TableView fx:id="vitalsTable">
+            <columns>
+                <TableColumn fx:id="patientCol" text="Patient" prefWidth="100"/>
+                <TableColumn fx:id="timeCol" text="Time" prefWidth="160"/>
+                <TableColumn fx:id="pulseCol" text="Pulse" prefWidth="80"/>
+                <TableColumn fx:id="respCol" text="Resp" prefWidth="80"/>
+                <TableColumn fx:id="tempCol" text="Temp (°C)" prefWidth="100"/>
+                <TableColumn fx:id="bpCol" text="BP (mmHg)" prefWidth="120"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

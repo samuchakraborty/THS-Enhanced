@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="10" alignment="CENTER" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml" fx:controller="ths.client.ui.LoginController" prefWidth="380">
+    <Label text="THS — Login" style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+    <TextField fx:id="email" promptText="Email" prefWidth="300"/>
+    <PasswordField fx:id="password" promptText="Password" prefWidth="300"/>
+    <Button text="Login" onAction="#onLogin" prefWidth="300"/>
+    <Label fx:id="error" textFill="red"/>
+    <Hyperlink text="Create an account" onAction="#toRegister"/>
+</VBox>
+
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ths.client.ui.DiagnosisController">
+
+    <top>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Filter by Patient:"/>
+            <TextField fx:id="filterField" promptText="P001" prefWidth="120"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="dxTable" prefHeight="260">
+            <columns>
+                <TableColumn fx:id="patientCol" text="Patient" prefWidth="100"/>
+                <TableColumn fx:id="textCol"    text="Diagnosis" prefWidth="220"/>
+                <TableColumn fx:id="prescCol"   text="Prescription" prefWidth="180"/>
+                <TableColumn fx:id="treatCol"   text="Treatment" prefWidth="180"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <GridPane hgap="8" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+            <!-- Diagnosis form -->
+            <Label text="Patient ID" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <TextField fx:id="patientIdField" promptText="P001"
+                       GridPane.rowIndex="0" GridPane.columnIndex="1" prefWidth="160"/>
+
+            <Label text="Diagnosis" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextArea fx:id="diagnosisArea" prefRowCount="2"
+                      GridPane.rowIndex="1" GridPane.columnIndex="1" prefWidth="360"/>
+
+            <Label text="Prescription" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextArea fx:id="prescriptionArea" prefRowCount="2"
+                      GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Treatment" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextArea fx:id="treatmentArea" prefRowCount="2"
+                      GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <HBox spacing="8" GridPane.rowIndex="4" GridPane.columnIndex="1">
+                <Button fx:id="addBtn"    text="Save New"/>
+                <Button fx:id="updateBtn" text="Update Selected"/>
+                <Button fx:id="deleteBtn" text="Delete Selected"/>
+            </HBox>
+
+                    </GridPane>
+              
+    </bottom>
+</BorderPane>

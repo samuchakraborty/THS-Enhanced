@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ths.client.ui.RegisterController"
+      spacing="10" alignment="CENTER" prefWidth="520">
+  <children>
+    <Label text="THS — Register" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
+    <TextField fx:id="fullName" promptText="Full name"/>
+    <TextField fx:id="email" promptText="Email"/>
+    <PasswordField fx:id="password" promptText="Password (min 6)"/>
+    <!-- items will be set in the controller -->
+    <ChoiceBox fx:id="role"/>
+    <Button text="Create account" onAction="#onRegister"/>
+    <Hyperlink text="Back to login" onAction="#toLogin"/>
+    <Label fx:id="error" textFill="RED"/>
+  </children>
+  <padding><Insets top="20" left="20" right="20" bottom="20"/></padding>
+</VBox>

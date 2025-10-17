@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ths.client.ui.DashboardController">
+    <top>
+        <ToolBar>
+            <Button text="Bookings" onAction="#goBookings"/>
+            <Button text="Vitals" onAction="#goVitals"/>
+            <Button text="Prescriptions" onAction="#goRx"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label text="Logged in"/>
+        </ToolBar>
+    </top>
+    <center>
+        <Label text="Welcome to THS" style="-fx-font-size: 18px;" />
+    </center>
+</BorderPane>

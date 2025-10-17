@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ths.client.ui.StaffBookingController">
+
+    <top>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+    <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+    <Label text="Patient ID:"/>
+    <TextField fx:id="patientIdField" promptText="P001" prefWidth="120"/>
+    <Button fx:id="searchBtn"  text="Search"  onAction="#onSearch"/>
+    <Button fx:id="refreshBtn" text="Refresh" onAction="#onRefresh"/>  <!-- NEW -->
+</HBox>
+
+    </top>
+
+    <center>
+        <TableView fx:id="table" prefHeight="260">
+            <columns>
+                <TableColumn fx:id="specialistCol" text="Specialist" prefWidth="140"/>
+                <TableColumn fx:id="dateCol"       text="Date"       prefWidth="110"/>
+                <TableColumn fx:id="timeCol"       text="Time"       prefWidth="100"/>
+                <TableColumn fx:id="notesCol"      text="Notes"      prefWidth="220"/>
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <GridPane hgap="8" vgap="8">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+
+            <Label text="Date"        GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <DatePicker fx:id="datePicker"
+                        GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Time (HH:MM)" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+            <TextField fx:id="timeField" promptText="10:30"
+                       GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+
+            <Label text="Specialist"  GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="specialistField"
+                       GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Notes"       GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+            <TextField fx:id="notesField"
+                       GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+            <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3">
+                <Button fx:id="updateBtn" text="Update Selected"/>
+                <Button fx:id="deleteBtn" text="Delete Selected"/>
+            </HBox>
+        </GridPane>
+    </bottom>
+</BorderPane>
