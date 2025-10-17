@@ -40,27 +40,10 @@ public class Router {
                 PrescriptionHandler.updateQty(req, userId);
             case "rx.refillAdd" ->
                 PrescriptionHandler.refillAdd(req, userId);
-            case "users.listPatients" ->
-                UsersHandler.listPatients(req, userId);
+                case "users.listPatients" ->
+              UsersHandler.listPatients(req, userId);
 
-            case "referral.listMine" ->
-                ReferralHandler.listMine(req, userId);
-
-            case "referral.book" ->
-                ReferralHandler.book(req, userId);
-            case "referral.delete" ->
-                ReferralHandler.delete(req, userId);
-
-            case "admin.users.list" ->
-                AdminUsersHandler.list(req, userId);
-            case "admin.user.updateName" ->
-                AdminUsersHandler.updateName(req, userId);
-
-            case "admin.bookings.list" ->
-                AdminBookingsHandler.list(req, userId);
-            case "admin.booking.update" ->
-                AdminBookingsHandler.update(req, userId);
-
+                
             // … keep the rest of your existing cases …
             // ── unknown action ──────────────────────────────────────────────────────
             default -> {

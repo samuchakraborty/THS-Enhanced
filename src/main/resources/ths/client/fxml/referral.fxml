@@ -5,37 +5,19 @@
 
 <BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
             fx:controller="ths.client.ui.ReferralController">
-
     <top>
-        <!-- Toolbar + patient selector stacked vertically -->
-        <VBox spacing="8">
-            <ToolBar>
-                <Button text="Dashboard" onAction="#goDashboard"/>
-                <Button text="Vitals" onAction="#goVitals"/>
-                <Button text="Prescriptions" onAction="#goRx"/>
-                <Pane HBox.hgrow="ALWAYS"/>
-                <Label text="Logged in"/>
-            </ToolBar>
-
-            <HBox spacing="8" alignment="CENTER_LEFT">
-                <padding>
-                    <Insets top="10" right="10" bottom="10" left="10"/>
-                </padding>
-                <Label text="Patient:"/>
-                <ComboBox fx:id="patientCombo" prefWidth="240" promptText="Select patient"/>
-                <Button text="Refresh" onAction="#refresh"/>
-            </HBox>
-        </VBox>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Patient ID:"/>
+            <TextField fx:id="patientIdField" promptText="P001" prefWidth="120"/>
+            <Button text="Refresh" onAction="#refresh"/>
+        </HBox>
     </top>
 
     <center>
         <TitledPane text="Referral (Clinics/Hospitals)" expanded="true">
             <content>
                 <GridPane hgap="8" vgap="8">
-                    <padding>
-                        <Insets top="10" right="10" bottom="10" left="10"/>
-                    </padding>
-
                     <Label text="Facility" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
                     <TextField fx:id="referralFacilityField" promptText="e.g. Rockhampton Hospital"
                                GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
@@ -52,17 +34,17 @@
                                GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
 
                     <HBox spacing="8" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3">
-                        <Button fx:id="bookReferralBtn"   text="Book Referral" onAction="#bookReferral"/>
-                        <Button fx:id="deleteReferralBtn" text="Delete Selected" onAction="#deleteSelected"/>
+                        <Button fx:id="bookReferralBtn"   text="Book Referral"/>
+                        <Button fx:id="deleteReferralBtn" text="Delete Selected"/>
                     </HBox>
 
-                    <TableView fx:id="referralTable" prefHeight="260"
-                               GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="4">
+                    <TableView fx:id="referralTable" prefHeight="220" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                               GridPane.columnSpan="4">
                         <columns>
-                            <TableColumn fx:id="refFacilityCol" text="Facility" prefWidth="240"/>
-                            <TableColumn fx:id="refDateCol"     text="Date"     prefWidth="120"/>
+                            <TableColumn fx:id="refFacilityCol" text="Facility" prefWidth="220"/>
+                            <TableColumn fx:id="refDateCol"     text="Date"     prefWidth="100"/>
                             <TableColumn fx:id="refTimeCol"     text="Time"     prefWidth="100"/>
-                            <TableColumn fx:id="refNotesCol"    text="Notes"    prefWidth="280"/>
+                            <TableColumn fx:id="refNotesCol"    text="Notes"    prefWidth="240"/>
                         </columns>
                     </TableView>
                 </GridPane>

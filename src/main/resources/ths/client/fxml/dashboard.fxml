@@ -8,10 +8,6 @@
             <Button text="Bookings" onAction="#goBookings"/>
             <Button text="Vitals" onAction="#goVitals"/>
             <Button text="Prescriptions" onAction="#goRx"/>
-            <Button text="Eeferral" onAction="#gorequestRefill"/>
-            <Button text="Admin" onAction="#goAdmin"/>
-
-
             <Pane HBox.hgrow="ALWAYS"/>
             <Label text="Logged in"/>
         </ToolBar>

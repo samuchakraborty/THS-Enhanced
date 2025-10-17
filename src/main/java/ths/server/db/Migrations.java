@@ -14,8 +14,6 @@ public class Migrations {
         Database.exec(Sql.CREATE_VITALS);
         Database.exec(Sql.CREATE_RX);
         Database.exec(Sql.CREATE_REFILLS);
-       Database.exec(Sql.CREATE_REFERRALS);
-
 
         // Ensure users table exists (safe to run even if it exists)
         try (Connection c = Database.ds.getConnection();

@@ -2,7 +2,6 @@ package ths.server.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 
 public final class Sql {
     public static final String CREATE_USERS = """
@@ -86,25 +85,7 @@ public final class Sql {
         FOREIGN KEY (decision_by) REFERENCES users(id)
       )""";
 
-    // NEW: referrals table (matches ReferralDao fields: facility, date, time, notes)
-    public static final String CREATE_REFERRALS = """
-      CREATE TABLE IF NOT EXISTS referrals(
-        id BIGINT PRIMARY KEY AUTO_INCREMENT,
-        patient_id BIGINT NOT NULL,
-        facility VARCHAR(255) NOT NULL,
-        `date` DATE NOT NULL,      -- YYYY-MM-DD
-        `time` CHAR(5) NOT NULL,   -- HH:MM
-        notes VARCHAR(512) NULL,
-        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-        INDEX idx_referrals_patient (patient_id),
-        FOREIGN KEY (patient_id) REFERENCES users(id)
-          ON DELETE CASCADE
-      )""";
-
-    private static final String URL  = System.getProperty(
-            "B_URL",
-            "jdbc:mysql://localhost:3306/ths?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=Australia/Sydney"
-    );
+    private static final String URL  = System.getProperty("B_URL",  "jdbc:mysql://localhost:3306/ths?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=Australia/Sydney");
     private static final String USER = System.getProperty("B_USER", "root");
     private static final String PASS = System.getProperty("B_PASS", "password");
 
@@ -113,22 +94,6 @@ public final class Sql {
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (Exception e) {
             throw new RuntimeException("DB connect failed: " + e.getMessage(), e);
-        }
-    }
-
-    /** Run all CREATE TABLE IF NOT EXISTS statements. Call once on server startup. */
-    public static void migrate() {
-        try (Connection c = get(); Statement st = c.createStatement()) {
-            st.addBatch(CREATE_USERS);
-            st.addBatch(CREATE_AUDIT);
-            st.addBatch(CREATE_BOOKINGS);
-            st.addBatch(CREATE_VITALS);
-            st.addBatch(CREATE_RX);
-            st.addBatch(CREATE_REFILLS);
-            st.addBatch(CREATE_REFERRALS);   // ← ensure referrals table exists
-            st.executeBatch();
-        } catch (Exception e) {
-            throw new RuntimeException("Migration failed: " + e.getMessage(), e);
         }
     }
 
