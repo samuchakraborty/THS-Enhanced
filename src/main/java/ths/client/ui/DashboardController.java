@@ -21,4 +21,10 @@ public class DashboardController {
         App.load("referral.fxml", "THS — Referral");
 
     }
+     public void goAdmin() {
+        App.load("admin.fxml", "THS — Admin");
+
+    }
+    //App.load("admin.fxml", "THS — Admin");
+
 }

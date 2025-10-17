@@ -11,8 +11,7 @@
     <top>
         <ToolBar>
             <Button text="Dashboard" onAction="#goDashboard"/>
-            <Button text="Vitals" onAction="#goVitals"/>
-            <Button text="Prescriptions" onAction="#goRx"/>
+      
             <Separator/>
             <Label text="Admin Dashboard" style="-fx-font-weight: bold;"/>
             <Pane HBox.hgrow="ALWAYS"/>

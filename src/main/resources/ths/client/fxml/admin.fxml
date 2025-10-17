@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.Priority?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ths.client.ui.AdminDashboardController">
+
+    <top>
+        <ToolBar>
+            <Button text="Dashboard" onAction="#goDashboard"/>
+      
+            <Separator/>
+            <Label text="Admin Dashboard" style="-fx-font-weight: bold;"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Button text="Reload" onAction="#reloadAll"/>
+        </ToolBar>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.48">
+            <!-- Users -->
+            <VBox spacing="8">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Users"/>
+                    <ComboBox fx:id="roleFilter" promptText="Filter by role (optional)" prefWidth="200"/>
+                    <Button text="Load Users" onAction="#loadUsers"/>
+                </HBox>
+                <TableView fx:id="usersTable" VBox.vgrow="ALWAYS" editable="true">
+                    <columns>
+                        <TableColumn fx:id="uIdCol"    text="ID"     prefWidth="80"/>
+                        <TableColumn fx:id="uEmailCol" text="Email"  prefWidth="220"/>
+                        <TableColumn fx:id="uRoleCol"  text="Role"   prefWidth="120"/>
+                        <TableColumn fx:id="uNameCol"  text="Name (editable)" prefWidth="220"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="8" alignment="CENTER_RIGHT">
+                    <Label text="Tip: Double-click a Name cell to edit; change saves on Enter."/>
+                </HBox>
+            </VBox>
+
+            <!-- Bookings -->
+            <VBox spacing="8">
+                <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <Label text="Bookings"/>
+                    <Button text="Load Bookings" onAction="#loadBookings"/>
+                </HBox>
+                <TableView fx:id="bookingsTable" VBox.vgrow="ALWAYS" editable="true">
+                    <columns>
+                        <TableColumn fx:id="bIdCol"     text="ID"         prefWidth="70"/>
+                        <TableColumn fx:id="bPatientCol" text="Patient"    prefWidth="180"/>
+                        <TableColumn fx:id="bSpecCol"    text="Specialist" prefWidth="200"/>
+                        <TableColumn fx:id="bDateCol"    text="Date/Time"  prefWidth="200"/>
+                        <TableColumn fx:id="bStatusCol"  text="Status"     prefWidth="140"/>
+                        <TableColumn fx:id="bNotesCol"   text="Notes"      prefWidth="220"/>
+                    </columns>
+                </TableView>
+                <HBox spacing="8" alignment="CENTER_RIGHT">
+                    <Label text="Tip: Specialist/Status/Date are editable in-place; change saves on Enter."/>
+                </HBox>
+            </VBox>
+        </SplitPane>
+    </center>
+
+</BorderPane>

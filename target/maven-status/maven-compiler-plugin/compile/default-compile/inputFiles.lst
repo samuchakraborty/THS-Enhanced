@@ -2,6 +2,7 @@
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/App.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/net/Api.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/net/SocketClient.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/AdminDashboardController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/BookingController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/DashboardController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/LoginController.java
@@ -23,6 +24,8 @@
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/db/Database.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/db/Migrations.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/db/Sql.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/AdminBookingsHandler.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/AdminUsersHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/AuthHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/BookingHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/PrescriptionHandler.java
