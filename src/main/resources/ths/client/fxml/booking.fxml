@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ths.client.ui.BookingController">
+    <top>
+        <VBox spacing="10">
+            <ToolBar>
+                <Button text="Dashboard" onAction="#goDashboard"/>
+                <Button text="Vitals" onAction="#goVitals"/>
+                <Button text="Prescriptions" onAction="#goRx"/>
+                <Pane HBox.hgrow="ALWAYS"/>
+                <Label text="Logged in"/>
+            </ToolBar>
+
+            <GridPane hgap="10" vgap="10">
+                <Label text="Specialist" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <ComboBox fx:id="specialistBox" prefWidth="260"
+                          GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+                <Label text="Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <DatePicker fx:id="datePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Time" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                <HBox spacing="6" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                    <Spinner fx:id="hourSpinner"  prefWidth="80"/>
+                    <Spinner fx:id="minuteSpinner" prefWidth="80"/>
+                </HBox>
+
+                <Label text="Notes" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="notes" promptText="optional"
+                           GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+                <Button text="Create Booking" onAction="#create"
+                        GridPane.rowIndex="3" GridPane.columnIndex="3" GridPane.halignment="RIGHT"/>
+            </GridPane>
+        </VBox>
+    </top>
+
+
+    <center>
+        <VBox spacing="6">
+            <padding>
+                <Insets top="8" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <TableView fx:id="table" prefHeight="360">
+                <columns>
+                    <TableColumn fx:id="colId"     text="ID"          prefWidth="90"/>
+                    <TableColumn fx:id="colSpec"   text="Specialist"  prefWidth="180"/>
+                    <TableColumn fx:id="colStart"  text="Start At"    prefWidth="180"/>
+                    <TableColumn fx:id="colStatus" text="Status"      prefWidth="120"/>
+                    <TableColumn fx:id="colNotes"  text="Notes"       prefWidth="260"/>
+                </columns>
+            </TableView>
+
+            <Label fx:id="msg" textFill="RED"/>
+        </VBox>
+    </center>
+</BorderPane>

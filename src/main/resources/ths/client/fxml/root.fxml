@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ths.controller.RootController">
+    
+  <top>
+    <VBox>
+  <Label text="Telehealth System " styleClass="header"/>
+  <HBox fx:id="banner" styleClass="banner" visible="false">
+    <Label fx:id="bannerText"/>
+  </HBox>
+  <!-- Header toolbar with theme switcher -->
+  <HBox spacing="10" alignment="CENTER_RIGHT" styleClass="topbar">
+    <padding><Insets top="6" right="10" bottom="6" left="10"/></padding>
+    <ToggleButton fx:id="themeToggle" text="Dark Mode"/>
+</HBox>
+</VBox>
+  </top>
+  <center>
+    <TabPane tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="Booking"><content><fx:include source="booking.fxml"/></content></Tab>
+        <Tab text="Vitals"><content><fx:include source="vitals.fxml"/></content></Tab>
+        <Tab text="Prescription"><content><fx:include source="prescription.fxml"/></content></Tab>
+        <Tab text="Staff Changes"><content><fx:include source="staff_booking.fxml"/></content></Tab>
+        <Tab text="Diagnosis"><content><fx:include source="diagnosis.fxml"/></content></Tab>
+        <Tab text="Referrals" closable="false"><content><fx:include source="referral.fxml"/></content></Tab>
+      </tabs>
+    </TabPane>
+  </center>
+</BorderPane>

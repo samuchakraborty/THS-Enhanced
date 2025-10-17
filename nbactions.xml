@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+        <action>
+            <actionName>run</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-DB_URL=jdbc:mysql://localhost:3306/ths?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC -DB_USER=ths -DB_PASS=root -DSERVER_PORT=7777 -DJWT_SECRET=supersecret_change_me</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs></exec.appArgs>
+                <exec.mainClass>ths.AllInOneLauncher</exec.mainClass>
+                <exec.executable>java</exec.executable>
+            </properties>
+        </action>
+        <action>
+            <actionName>debug</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-DB_URL=jdbc:mysql://localhost:3306/ths?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC -DB_USER=ths -DB_PASS=root -DSERVER_PORT=7777 -DJWT_SECRET=supersecret_change_me -agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.appArgs></exec.appArgs>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <jpda.listen>true</jpda.listen>
+            </properties>
+        </action>
+        <action>
+            <actionName>profile</actionName>
+            <packagings>
+                <packaging>jar</packaging>
+            </packagings>
+            <goals>
+                <goal>process-classes</goal>
+                <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
+            </goals>
+            <properties>
+                <exec.vmArgs>-DB_URL=jdbc:mysql://localhost:3306/ths?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC -DB_USER=ths -DB_PASS=root -DSERVER_PORT=7777 -DJWT_SECRET=supersecret_change_me</exec.vmArgs>
+                <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
+                <exec.mainClass>${packageClassName}</exec.mainClass>
+                <exec.executable>java</exec.executable>
+                <exec.appArgs></exec.appArgs>
+            </properties>
+        </action>
+    </actions>

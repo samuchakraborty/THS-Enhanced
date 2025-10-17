@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ths.client.ui.ReferralController">
+    <top>
+        <HBox spacing="8" alignment="CENTER_LEFT">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <Label text="Patient ID:"/>
+            <TextField fx:id="patientIdField" promptText="P001" prefWidth="120"/>
+            <Button text="Refresh" onAction="#refresh"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TitledPane text="Referral (Clinics/Hospitals)" expanded="true">
+            <content>
+                <GridPane hgap="8" vgap="8">
+                    <Label text="Facility" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="referralFacilityField" promptText="e.g. Rockhampton Hospital"
+                               GridPane.rowIndex="0" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+                    <Label text="Date" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <DatePicker fx:id="referralDatePicker" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                    <Label text="Time (HH:MM)" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    <TextField fx:id="referralTimeField" promptText="11:30"
+                               GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+
+                    <Label text="Notes" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="referralNotesField"
+                               GridPane.rowIndex="2" GridPane.columnIndex="1" GridPane.columnSpan="3"/>
+
+                    <HBox spacing="8" GridPane.rowIndex="3" GridPane.columnIndex="1" GridPane.columnSpan="3">
+                        <Button fx:id="bookReferralBtn"   text="Book Referral"/>
+                        <Button fx:id="deleteReferralBtn" text="Delete Selected"/>
+                    </HBox>
+
+                    <TableView fx:id="referralTable" prefHeight="220" GridPane.rowIndex="4" GridPane.columnIndex="0"
+                               GridPane.columnSpan="4">
+                        <columns>
+                            <TableColumn fx:id="refFacilityCol" text="Facility" prefWidth="220"/>
+                            <TableColumn fx:id="refDateCol"     text="Date"     prefWidth="100"/>
+                            <TableColumn fx:id="refTimeCol"     text="Time"     prefWidth="100"/>
+                            <TableColumn fx:id="refNotesCol"    text="Notes"    prefWidth="240"/>
+                        </columns>
+                    </TableView>
+                </GridPane>
+            </content>
+        </TitledPane>
+    </center>
+</BorderPane>
