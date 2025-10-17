@@ -15,42 +15,91 @@ import ths.client.net.Api;
 public class VitalsController {
 
     // Toolbar navigation
-    @FXML private void goDashboard()    { App.load("dashboard.fxml",     "THS — Dashboard"); }
-    @FXML private void goVitals()       { App.load("vitals.fxml",        "THS — Vitals"); }
-    @FXML private void goRx()           { App.load("prescriptions.fxml", "THS — Prescriptions"); }
+    @FXML
+    private void goDashboard() {
+        App.load("dashboard.fxml", "THS — Dashboard");
+    }
+
+    @FXML
+    private void goVitals() {
+        App.load("vitals.fxml", "THS — Vitals");
+    }
+
+    @FXML
+    private void goRx() {
+        App.load("prescriptions.fxml", "THS — Prescriptions");
+    }
 
     // Patient dropdown (replaces patientIdField)
-    @FXML private ComboBox<PatientOption> patientCombo;
+    @FXML
+    private ComboBox<PatientOption> patientCombo;
 
     // Top form fields
-    @FXML private TextField pulseField, respField, tempField, systolicField, diastolicField;
+    @FXML
+    private TextField pulseField, respField, tempField, systolicField, diastolicField;
 
     // Table
-    @FXML private TableView<Row> vitalsTable;
-    @FXML private TableColumn<Row,String> patientCol, timeCol, pulseCol, respCol, tempCol, bpCol;
+    @FXML
+    private TableView<Row> vitalsTable;
+    @FXML
+    private TableColumn<Row, String> patientCol, timeCol, pulseCol, respCol, tempCol, bpCol;
 
     private final ObservableList<Row> rows = FXCollections.observableArrayList();
 
     // --- Models ---
     public static class PatientOption {
+
         final long id;
         final String name;
-        PatientOption(long id, String name) { this.id = id; this.name = name; }
-        @Override public String toString() { return name; }
+
+        PatientOption(long id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
     // Table row model matching the column names
     public static class Row {
+
         private final String patient, time, pulse, resp, temp, bp;
+
         public Row(String patient, String time, String pulse, String resp, String temp, String bp) {
-            this.patient = patient; this.time = time; this.pulse = pulse; this.resp = resp; this.temp = temp; this.bp = bp;
+            this.patient = patient;
+            this.time = time;
+            this.pulse = pulse;
+            this.resp = resp;
+            this.temp = temp;
+            this.bp = bp;
         }
-        public String getPatient() { return patient; }
-        public String getTime()    { return time; }
-        public String getPulse()   { return pulse; }
-        public String getResp()    { return resp; }
-        public String getTemp()    { return temp; }
-        public String getBp()      { return bp; }
+
+        public String getPatient() {
+            return patient;
+        }
+
+        public String getTime() {
+            return time;
+        }
+
+        public String getPulse() {
+            return pulse;
+        }
+
+        public String getResp() {
+            return resp;
+        }
+
+        public String getTemp() {
+            return temp;
+        }
+
+        public String getBp() {
+            return bp;
+        }
     }
 
     @FXML
@@ -66,8 +115,15 @@ public class VitalsController {
 
         // Combo rendering
         patientCombo.setConverter(new StringConverter<PatientOption>() {
-            @Override public String toString(PatientOption p) { return p == null ? "" : p.name; }
-            @Override public PatientOption fromString(String s) { return null; }
+            @Override
+            public String toString(PatientOption p) {
+                return p == null ? "" : p.name;
+            }
+
+            @Override
+            public PatientOption fromString(String s) {
+                return null;
+            }
         });
 
         loadPatients(); // populate patients then vitals for the first one
@@ -91,8 +147,12 @@ public class VitalsController {
                 var o = el.getAsJsonObject();
                 long id = safeLong(o, "id", -1L);
                 String name = safeString(o, "fullName");
-                if (name.isBlank()) name = "Patient #" + id;
-                if (id > 0) options.add(new PatientOption(id, name));
+                if (name.isBlank()) {
+                    name = "Patient #" + id;
+                }
+                if (id > 0) {
+                    options.add(new PatientOption(id, name));
+                }
             }
             patientCombo.setItems(options);
             if (!options.isEmpty()) {
@@ -111,7 +171,9 @@ public class VitalsController {
         try {
             rows.clear();
             PatientOption sel = patientCombo.getValue();
-            if (sel == null) return;
+            if (sel == null) {
+                return;
+            }
 
             var body = new JsonObject();
             body.addProperty("patientId", sel.id);
@@ -128,15 +190,17 @@ public class VitalsController {
                 var o = e.getAsJsonObject();
                 String patient = sel.name;
                 // Try a couple common timestamp keys
-                String when  = safeString(o, "measuredAt");
-                if (when.isBlank()) when = safeString(o, "createdAt");
+                String when = safeString(o, "measuredAt");
+                if (when.isBlank()) {
+                    when = safeString(o, "createdAt");
+                }
                 // Map common vital keys; change names if your backend differs
                 String pulse = safeString(o, "pulse");
-                String resp  = safeString(o, "respiration");
-                String temp  = safeString(o, "temperature");
-                String sys   = safeString(o, "systolic");
-                String dia   = safeString(o, "diastolic");
-                String bp    = (!sys.isBlank() && !dia.isBlank()) ? (sys + "/" + dia) : "";
+                String resp = safeString(o, "respiration");
+                String temp = safeString(o, "temperature");
+                String sys = safeString(o, "systolic");
+                String dia = safeString(o, "diastolic");
+                String bp = (!sys.isBlank() && !dia.isBlank()) ? (sys + "/" + dia) : "";
                 rows.add(new Row(patient, when, pulse, resp, temp, bp));
             }
         } catch (Exception e) {
@@ -149,19 +213,33 @@ public class VitalsController {
     private void record() {
         try {
             PatientOption sel = patientCombo.getValue();
-            if (sel == null) { alert("Select a patient first."); return; }
+            if (sel == null) {
+                alert("Select a patient first.");
+                return;
+            }
 
             var body = new JsonObject();
             body.addProperty("patientId", sel.id);
-            if (has(pulseField))    body.addProperty("pulse",       Integer.parseInt(pulseField.getText().trim()));
-            if (has(respField))     body.addProperty("respiration", Integer.parseInt(respField.getText().trim()));
-            if (has(tempField))     body.addProperty("temperature", Double.parseDouble(tempField.getText().trim()));
-            if (has(systolicField)) body.addProperty("systolic",    Integer.parseInt(systolicField.getText().trim()));
-            if (has(diastolicField))body.addProperty("diastolic",   Integer.parseInt(diastolicField.getText().trim()));
+            if (has(pulseField)) {
+                body.addProperty("pulse", Integer.parseInt(pulseField.getText().trim()));
+            }
+            if (has(respField)) {
+                body.addProperty("respiration", Integer.parseInt(respField.getText().trim()));
+            }
+            if (has(tempField)) {
+                body.addProperty("temperature", Double.parseDouble(tempField.getText().trim()));
+            }
+            if (has(systolicField)) {
+                body.addProperty("systolic", Integer.parseInt(systolicField.getText().trim()));
+            }
+            if (has(diastolicField)) {
+                body.addProperty("diastolic", Integer.parseInt(diastolicField.getText().trim()));
+            }
 
             JsonObject res = Api.call("vitals.record", body); // adjust route name if needed
             if (res == null || !"ok".equalsIgnoreCase(safeString(res, "status"))) {
-                alert(msg(res, "Record failed")); return;
+                alert(msg(res, "Record failed"));
+                return;
             }
             loadVitals(); // refresh table
         } catch (NumberFormatException nfe) {
@@ -171,41 +249,87 @@ public class VitalsController {
         }
     }
 
+    // --- helpers ---
+    private static boolean has(TextField f) {
+        return f != null && f.getText() != null && !f.getText().trim().isBlank();
+    }
+
+    private static String safeString(JsonObject o, String k) {
+        return (o != null && o.has(k) && !o.get(k).isJsonNull()) ? o.get(k).getAsString() : "";
+    }
+
+    private static long safeLong(JsonObject o, String k, long def) {
+        try {
+            if (o != null && o.has(k) && !o.get(k).isJsonNull()) {
+                return o.get(k).getAsLong();
+            }
+        } catch (Exception ignored) {
+        }
+        return def;
+    }
+
+    private static String msg(JsonObject r, String fb) {
+        return (r != null && r.has("message") && !r.get("message").isJsonNull())
+                ? r.get("message").getAsString() : fb;
+    }
+
+    private static void alert(String msg) {
+        Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
+        a.setHeaderText(null);
+        a.showAndWait();
+    }
+
     @FXML
     private void exportCsv() {
         try {
-            StringBuilder sb = new StringBuilder("Patient,Time,Pulse,Resp,Temp,BP\n");
-            vitalsTable.getItems().forEach(r ->
+            // 1) Choose file
+            var chooser = new javafx.stage.FileChooser();
+            chooser.setTitle("Export Vitals to CSV");
+            chooser.getExtensionFilters().add(new javafx.stage.FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+            chooser.setInitialFileName("vitals.csv");
+            var stage = (javafx.stage.Stage) vitalsTable.getScene().getWindow();
+            var file = chooser.showSaveDialog(stage);
+            if (file == null) {
+                return; // user canceled
+            }
+            // 2) Build CSV
+            StringBuilder sb = new StringBuilder();
+            // UTF-8 BOM for Excel compatibility
+            final String BOM = "\uFEFF";
+            sb.append(BOM);
+
+            // Header
+            sb.append("Patient,Time,Pulse,Resp,Temp,BP\n");
+
+            // Rows
+            for (Row r : vitalsTable.getItems()) {
                 sb.append(csv(r.getPatient())).append(',')
-                  .append(csv(r.getTime())).append(',')
-                  .append(csv(r.getPulse())).append(',')
-                  .append(csv(r.getResp())).append(',')
-                  .append(csv(r.getTemp())).append(',')
-                  .append(csv(r.getBp())).append('\n')
-            );
-            alert("CSV prepared in memory (hook up a FileChooser to save).");
+                        .append(csv(r.getTime())).append(',')
+                        .append(csv(r.getPulse())).append(',')
+                        .append(csv(r.getResp())).append(',')
+                        .append(csv(r.getTemp())).append(',')
+                        .append(csv(r.getBp())).append('\n');
+            }
+
+            // 3) Write file (UTF-8)
+            try (var out = new java.io.OutputStreamWriter(new java.io.FileOutputStream(file), java.nio.charset.StandardCharsets.UTF_8)) {
+                out.write(sb.toString());
+            }
+
+            alert("Exported " + vitalsTable.getItems().size() + " rows to:\n" + file.getAbsolutePath());
         } catch (Exception e) {
             alert("Export failed: " + e.getMessage());
         }
     }
 
-    // --- helpers ---
-    private static boolean has(TextField f){ return f != null && f.getText() != null && !f.getText().trim().isBlank(); }
-    private static String safeString(JsonObject o, String k) {
-        return (o != null && o.has(k) && !o.get(k).isJsonNull()) ? o.get(k).getAsString() : "";
+// CSV escape helper (handles commas, quotes, and newlines)
+    private static String csv(String s) {
+        if (s == null) {
+            return "";
+        }
+        boolean needQuotes = s.contains(",") || s.contains("\"") || s.contains("\n") || s.contains("\r");
+        String v = s.replace("\"", "\"\"");
+        return needQuotes ? ("\"" + v + "\"") : v;
     }
-    private static long safeLong(JsonObject o, String k, long def) {
-        try { if (o != null && o.has(k) && !o.get(k).isJsonNull()) return o.get(k).getAsLong(); }
-        catch (Exception ignored) {}
-        return def;
-    }
-    private static String msg(JsonObject r, String fb) {
-        return (r != null && r.has("message") && !r.get("message").isJsonNull())
-                ? r.get("message").getAsString() : fb;
-    }
-    private static String csv(String s){ return s == null ? "" : s.replace("\"","\"\""); }
-    private static void alert(String msg){
-        Alert a = new Alert(Alert.AlertType.INFORMATION, msg, ButtonType.OK);
-        a.setHeaderText(null); a.showAndWait();
-    }
+
 }

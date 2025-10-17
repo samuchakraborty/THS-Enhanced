@@ -40,6 +40,8 @@
                 <TextField fx:id="diastolicField" promptText="80"  prefWidth="60"/>
 
                 <Button fx:id="recordBtn" text="Record" onAction="#record"/>
+                <Button text="Export CSV" onAction="#exportCsv"/>
+
 <!--                <Button fx:id="exportBtn" text="Export CSV"/>
                 <Button fx:id="loadBtn"   text="Load"/>-->
             </HBox>
