@@ -51,6 +51,16 @@ public class Router {
             case "referral.delete" ->
                 ReferralHandler.delete(req, userId);
 
+            case "admin.users.list" ->
+                AdminUsersHandler.list(req, userId);
+            case "admin.user.updateName" ->
+                AdminUsersHandler.updateName(req, userId);
+
+            case "admin.bookings.list" ->
+                AdminBookingsHandler.list(req, userId);
+            case "admin.booking.update" ->
+                AdminBookingsHandler.update(req, userId);
+
             // … keep the rest of your existing cases …
             // ── unknown action ──────────────────────────────────────────────────────
             default -> {
