@@ -6,6 +6,7 @@
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/DashboardController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/LoginController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/PrescriptionsController.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/ReferralController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/RegisterController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/client/ui/VitalsController.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/ClientWorker.java
@@ -15,6 +16,7 @@
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/AuditDao.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/BookingDao.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/PrescriptionDao.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/ReferralDao.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/RefillDao.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/UserDao.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/dao/VitalDao.java
@@ -24,6 +26,7 @@
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/AuthHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/BookingHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/PrescriptionHandler.java
+/Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/ReferralHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/SpecialistHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/UsersHandler.java
 /Users/samu/Downloads/THS-Enhanced/src/main/java/ths/server/handler/VitalsHandler.java

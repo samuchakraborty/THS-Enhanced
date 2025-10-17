@@ -5,6 +5,7 @@ ths/client/App.class
 ths/server/dao/VitalDao.class
 ths/server/db/Database.class
 ths/server/handler/UsersHandler.class
+ths/server/dao/ReferralDao$Referral.class
 ths/server/service/VitalService.class
 ths/client/ui/RegisterController.class
 ths/client/ui/PrescriptionsController.class
@@ -12,11 +13,15 @@ ths/AllInOneLauncher.class
 ths/server/security/Passwords.class
 ths/server/ClientWorker.class
 ths/client/ui/DashboardController.class
+ths/client/ui/ReferralController.class
 ths/server/Protocol.class
+ths/server/handler/ReferralHandler.class
 ths/server/handler/VitalsHandler.class
 ths/client/ui/PrescriptionsController$Row.class
 ths/client/ui/VitalsController$Row.class
+ths/client/ui/ReferralController$Row.class
 ths/client/net/Api.class
+ths/client/ui/ReferralController$1.class
 ths/server/model/Prescription.class
 ths/client/ui/VitalsController$PatientOption.class
 ths/server/dao/AuditDao.class
@@ -31,10 +36,12 @@ ths/server/handler/SpecialistHandler.class
 ths/server/Router.class
 ths/client/ui/BookingController.class
 ths/server/service/AuthService.class
+ths/client/ui/ReferralController$PatientOption.class
 ths/server/model/RefillRequest.class
 ths/server/service/BookingService.class
 ths/client/net/SocketClient.class
 ths/client/ui/BookingController$Row.class
+ths/server/dao/ReferralDao.class
 ths/server/db/Migrations.class
 ths/server/model/VitalSign.class
 ths/client/ui/VitalsController.class
